@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -03
+CFLAGS = -Wall -Wextra -Werror
 NAME = pipex
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
