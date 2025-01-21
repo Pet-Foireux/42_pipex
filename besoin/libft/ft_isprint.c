@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 03:37:58 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 06:39:12 by mpapin           ###   ########.fr       */
+/*   Created: 2024/09/10 16:16:30 by mpapin            #+#    #+#             */
+/*   Updated: 2024/10/21 15:15:23 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft.h"
-# include "ft_printf.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
+int	ft_isprint(int c)
+{
+	if (c >= 32 && 126 >= c)
+		return (1);
+	else
+		return (0);
+}
 
-char	**get_all_path(char **env);
-char	*get_cmd_path(char **all_path, char *cmd);
-
-#endif
+// int	main(void)
+// {
+// 	printf("%d\n", ft_isprint(65));
+// 	return (0);
+// }

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 03:37:58 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 06:39:12 by mpapin           ###   ########.fr       */
+/*   Created: 2024/09/10 16:00:55 by mpapin            #+#    #+#             */
+/*   Updated: 2024/10/22 17:19:45 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft.h"
-# include "ft_printf.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-char	**get_all_path(char **env);
-char	*get_cmd_path(char **all_path, char *cmd);
+	i = ft_strlen(s);
+	while (i >= 0)
+	{
+		if (s[i] == (char) c)
+			return ((char *) s + i);
+		i--;
+	}
+	return (NULL);
+}
 
-#endif
+// int	main(void)
+// {
+// 	printf("%s\n", ft_strrchr("Hello, World!", 'o'));
+// 	return (0);
+// }

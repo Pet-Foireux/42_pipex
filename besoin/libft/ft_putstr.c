@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 03:37:58 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 06:39:12 by mpapin           ###   ########.fr       */
+/*   Created: 2025/01/21 06:58:49 by mpapin            #+#    #+#             */
+/*   Updated: 2025/01/21 06:59:04 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft.h"
-# include "ft_printf.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
+int	ft_putstr(char *str)
+{
+	int	j;
 
-char	**get_all_path(char **env);
-char	*get_cmd_path(char **all_path, char *cmd);
-
-#endif
+	j = 0;
+	if (!str)
+		str = "(null)";
+	while (str[j])
+	{
+		ft_putchar(str[j]);
+		j++;
+	}
+	return (j);
+}

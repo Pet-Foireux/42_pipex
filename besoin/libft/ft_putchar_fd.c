@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 03:37:58 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 06:39:12 by mpapin           ###   ########.fr       */
+/*   Created: 2024/09/10 15:59:55 by mpapin            #+#    #+#             */
+/*   Updated: 2024/10/21 15:17:50 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft.h"
-# include "ft_printf.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
-char	**get_all_path(char **env);
-char	*get_cmd_path(char **all_path, char *cmd);
-
-#endif
+// int	main(void)
+// {
+// 	ft_putchar_fd('A', 1);
+// 	return (0);
+// }

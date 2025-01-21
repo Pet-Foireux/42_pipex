@@ -6,7 +6,7 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 03:37:29 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 05:50:35 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/01/21 06:36:06 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ char	**get_all_path(char **env)
 		i++;
 	}
 	if (!path_env)
-		return (printf("Error\nPATH pas recupere/trouve"), NULL);
+		return (ft_printf("Error\nPATH pas recupere/trouve"), NULL);
 	all_path = ft_split(path_env, ':');
 	if (!all_path)
-		return (printf("Error\nEchec split"), NULL);
+		return (ft_printf("Error\nEchec split"), NULL);
 	return (all_path);
 }
 
@@ -61,7 +61,7 @@ char	*get_cmd_path(char **all_path, char *cmd)
 	i = 0;
 	all_cmd = ft_split(cmd, ' ');
 	if (!all_cmd)
-		return (printf("Error\nEchec split"), NULL);
+		return (ft_printf("Error\nEchec split"), NULL);
 	while (all_path[i])
 	{
 		cmd_no_path = ft_strjoin(all_path[i], "/");
@@ -74,5 +74,5 @@ char	*get_cmd_path(char **all_path, char *cmd)
 		}
 		i++;
 	}
-	return (printf("Error\nCmd pas trouver..."), NULL);
+	return (ft_printf("Error\nCmd pas trouver..."), NULL);
 }

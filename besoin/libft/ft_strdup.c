@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 03:37:58 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 06:39:12 by mpapin           ###   ########.fr       */
+/*   Created: 2024/09/10 16:00:19 by mpapin            #+#    #+#             */
+/*   Updated: 2024/10/21 15:19:43 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "libft.h"
 
-# include "libft.h"
-# include "ft_printf.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
+char	*ft_strdup(const char *s1)
+{
+	char	*new;
+	size_t	i;
 
-char	**get_all_path(char **env);
-char	*get_cmd_path(char **all_path, char *cmd);
+	new = malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
+}
 
-#endif
+// int	main(void)
+// {
+// 	char *dup = ft_strdup("Hello, World!");
+// 	printf("%s\n", dup);
+// 	free(dup);
+// 	return (0);
+// }
