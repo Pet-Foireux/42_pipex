@@ -1,10 +1,10 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -03
 NAME = pipex
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC = main.c
+SRC = main.c besoin.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
