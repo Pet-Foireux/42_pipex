@@ -12,13 +12,32 @@
 
 #include "pipex.h"
 
-void	exec_cmd(char *cmd, char **env)
+void exec_cmd(char *cmd, char **env)
 {
-	char	**all_cmd;
+	char **all_cmd;
+	char *path;
+	char **all_path;
+
+	if (!cmd || *cmd == '\0') {
+		perror("Error\nEmpty command");
+		exit(EXIT_FAILURE);
+	}
 
 	all_cmd = ft_split(cmd, ' ');
-	if (execve(get_cmd_path(get_all_path(env), cmd), all_cmd, env) == -1)
+	all_path = get_all_path(env);
+	path = get_cmd_path(all_path, cmd);
+	if (path == NULL) {
+		perror("Error\nCommand not found");
+		exit(EXIT_FAILURE);
+	}
+
+	if (execve(path, all_cmd, env) == -1) {
 		perror("Error\nExec failed");
+		exit(EXIT_FAILURE);
+	}
+	ft_free_tab(all_cmd);
+	ft_free_tab(all_path);
+	free(path);
 }
 
 void	child(char **argv, int pipefd[2], char **env)
@@ -68,7 +87,7 @@ int	main(int argc, char **argv, char **env)
 	int		status;
 
 	if (argc != 5)
-		return (1);
+		return (perror("Error\n"), 0);
 	if (pipe(pipefd) == -1)
 		return (perror("Error\npipe"), 1);
 	pid = fork();

@@ -6,7 +6,7 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 03:37:29 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/21 06:36:06 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/01/23 18:37:21 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,43 @@ char	**get_all_path(char **env)
 	return (all_path);
 }
 
+char	*build_cmd_path(char *path, char *cmd)
+{
+	char	*cmd_no_path;
+	char	*cmd_path;
+
+	cmd_no_path = ft_strjoin(path, "/");
+	if (!cmd_no_path)
+		return (NULL);
+	cmd_path = ft_strjoin(cmd_no_path, cmd);
+	free(cmd_no_path);
+	return (cmd_path);
+}
+
 char	*get_cmd_path(char **all_path, char *cmd)
 {
 	char	**all_cmd;
 	char	*cmd_path;
-	char	*cmd_no_path;
 	int		i;
 
-	i = 0;
+	if (!cmd || *cmd == '\0')
+		return (NULL);
 	all_cmd = ft_split(cmd, ' ');
 	if (!all_cmd)
 		return (ft_printf("Error\nEchec split"), NULL);
+	i = 0;
 	while (all_path[i])
 	{
-		cmd_no_path = ft_strjoin(all_path[i], "/");
-		cmd_path = ft_strjoin(cmd_path, all_cmd[0]);
-		free(cmd_no_path);
-		if (access(cmd_path, F_OK) == 0 && access(cmd_path, X_OK) == 0)
+		cmd_path = build_cmd_path(all_path[i], all_cmd[0]);
+		if (cmd_path && access(cmd_path, F_OK) == 0
+			&& access(cmd_path, X_OK) == 0)
 		{
-			free(cmd_path);
+			ft_free_tab(all_cmd);
 			return (cmd_path);
 		}
+		free(cmd_path);
 		i++;
 	}
+	ft_free_tab(all_cmd);
 	return (ft_printf("Error\nCmd pas trouver..."), NULL);
 }
