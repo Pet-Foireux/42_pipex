@@ -12,26 +12,27 @@
 
 #include "pipex.h"
 
-void exec_cmd(char *cmd, char **env)
+void	exec_cmd(char *cmd, char **env)
 {
-	char **all_cmd;
-	char *path;
-	char **all_path;
+	char	**all_cmd;
+	char	*path;
+	char	**all_path;
 
-	if (!cmd || *cmd == '\0') {
+	if (!cmd || *cmd == '\0')
+	{
 		perror("Error\nEmpty command");
 		exit(EXIT_FAILURE);
 	}
-
 	all_cmd = ft_split(cmd, ' ');
 	all_path = get_all_path(env);
 	path = get_cmd_path(all_path, cmd);
-	if (path == NULL) {
+	if (path == NULL)
+	{
 		perror("Error\nCommand not found");
 		exit(EXIT_FAILURE);
 	}
-
-	if (execve(path, all_cmd, env) == -1) {
+	if (execve(path, all_cmd, env) == -1)
+	{
 		perror("Error\nExec failed");
 		exit(EXIT_FAILURE);
 	}
