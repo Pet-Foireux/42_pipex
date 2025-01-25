@@ -12,6 +12,15 @@
 
 #include "pipex.h"
 
+static void	handle_error(char **all_cmd, char **all_path, char *path, char *msg)
+{
+	perror(msg);
+	ft_free_tab(all_cmd);
+	ft_free_tab(all_path);
+	free(path);
+	exit(EXIT_FAILURE);
+}
+
 void	exec_cmd(char *cmd, char **env)
 {
 	char	**all_cmd;
@@ -19,23 +28,14 @@ void	exec_cmd(char *cmd, char **env)
 	char	**all_path;
 
 	if (!cmd || *cmd == '\0')
-	{
-		perror("Error\nEmpty command");
-		exit(EXIT_FAILURE);
-	}
+		handle_error(NULL, NULL, NULL, "Error");
 	all_cmd = ft_split(cmd, ' ');
 	all_path = get_all_path(env);
 	path = get_cmd_path(all_path, cmd);
 	if (path == NULL)
-	{
-		perror("Error\nCommand not found");
-		exit(EXIT_FAILURE);
-	}
+		handle_error(all_cmd, all_path, path, "Error");
 	if (execve(path, all_cmd, env) == -1)
-	{
-		perror("Error\nExec failed");
-		exit(EXIT_FAILURE);
-	}
+		handle_error(all_cmd, all_path, path, "Error");
 	ft_free_tab(all_cmd);
 	ft_free_tab(all_path);
 	free(path);

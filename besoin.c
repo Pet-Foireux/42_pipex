@@ -6,7 +6,7 @@
 /*   By: mpapin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 03:37:29 by mpapin            #+#    #+#             */
-/*   Updated: 2025/01/23 18:37:21 by mpapin           ###   ########.fr       */
+/*   Updated: 2025/01/25 15:09:00 by mpapin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ char	*get_cmd_path(char **all_path, char *cmd)
 		i++;
 	}
 	ft_free_tab(all_cmd);
-	return (ft_printf("Error\nCmd pas trouver..."), NULL);
+	perror("Error");
+	return (NULL);
 }
