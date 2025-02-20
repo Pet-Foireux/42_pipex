@@ -1,0 +1,12 @@
+besoin
+besoin.c
+besoin.o
+includes
+infile
+main.c
+main.o
+Makefile
+out
+pipex
+pipex.h
+test

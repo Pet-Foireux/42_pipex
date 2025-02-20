@@ -33,7 +33,7 @@ void	exec_cmd(char *cmd, char **env)
 	char	**all_path;
 
 	if (!cmd || *cmd == '\0')
-		handle_error(NULL, NULL, NULL, "Error : commande vide");
+		handle_error(NULL, NULL, NULL, "Error : argument invalide");
 	all_cmd = ft_split(cmd, ' ');
 	all_path = get_all_path(env);
 	if (cmd[0] == '/')
