@@ -14,12 +14,7 @@
 
 static void	handle_error(char **all_cmd, char **all_path, char *path, char *msg)
 {
-	int	saved_stdin;
-
-	saved_stdin = dup(STDOUT_FILENO);
-	dup2(STDERR_FILENO, STDOUT_FILENO);
-	ft_printf("%s\n", msg);
-	dup2(saved_stdin, STDOUT_FILENO);
+	ft_putendl_fd(msg, STDERR_FILENO);
 	ft_free_tab(all_cmd);
 	ft_free_tab(all_path);
 	free(path);
@@ -33,12 +28,12 @@ void	exec_cmd(char *cmd, char **env)
 	char	**all_path;
 
 	if (!cmd || *cmd == '\0')
-		handle_error(NULL, NULL, NULL, "Error : commande vide");
+		handle_error(NULL, NULL, NULL, "Error : argument invalide");
 	all_cmd = ft_split(cmd, ' ');
 	all_path = get_all_path(env);
-	if (cmd[0] == '/')
+	if (access(all_cmd[0], X_OK) == 0)
 	{
-		if (execve(cmd, all_cmd, env) == -1)
+		if (execve(all_cmd[0], all_cmd, env) == -1)
 			handle_error(all_cmd, all_path, NULL, "Error : impossible d'exec");
 	}
 	else
@@ -111,8 +106,8 @@ int	main(int argc, char **argv, char **env)
 		child(argv, pipefd, env);
 	else
 	{
-		waitpid(pid, &status, 0);
 		parent(argv, pipefd, env);
+		waitpid(pid, &status, 0);
 	}
 	return (0);
 }
